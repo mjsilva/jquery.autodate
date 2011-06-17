@@ -74,10 +74,10 @@
 
 				// test if the date is in 0000-00-00 format
 				// if it is just swap the order to 00-00-0000
-				if(/^\d{4}-\d{2}-\d{2}$/.test(userInput))
+				if (/^\d{4}-\d{2}-\d{2}$/.test(userInput))
 				{
 					var tmp = userInput.split('-');
-					userInput = tmp[2]+tmp[1]+tmp[0];
+					userInput = tmp[2] + tmp[1] + tmp[0];
 				}
 
 				// remove chars that are not numbers
@@ -148,6 +148,12 @@
 					returnDate = new Date(inputYear, inputMonth, inputDay);
 					setDate($(this), returnDate);
 
+				}
+				else
+				{
+					alert("Data Invalida");
+					focusField($(this));
+					return;
 				}
 
 			});
