@@ -16,6 +16,9 @@
  * note 1: if user only inputs two digits in year if it's less than 50 expands to the future,
  *         if it's more than 50 expands to the past.
  *
+ * note 2: only non numerica chars are wiped, that mean if user inputs something like 02-01 that
+ *         will exand to {current year}-01-02.
+ *
  *
  * DEPENDENCIES: This script requires jQuery to work.  Download jQuery at http://jquery.com
  *
@@ -67,9 +70,11 @@
 
 				// if user doesn't have input we are out of here
 				var userInput = $(this).val().replace(/[^0-9']/g, '');
-				if (!userInput) return;
-
-				console.debug(userInput);
+				if (!userInput)
+				{
+					$(this).val("");
+					return;
+				}
 
 				// get user input length
 				var inputLength = userInput.length;
@@ -80,6 +85,7 @@
 					if (!validDay(userInput))
 					{
 						alert("Data Invalida");
+						focusField($(this));
 						return;
 					}
 
@@ -94,6 +100,7 @@
 					if (!validDay(inputDay))
 					{
 						alert("Data Invalida");
+						focusField($(this));
 						return;
 					}
 
@@ -175,6 +182,15 @@
 				}
 
 
+			};
+
+			var focusField = function(field)
+			{
+				setTimeout(function()
+				{
+					field.focus();
+					field.select();
+				}, 0);
 			};
 
 		});
