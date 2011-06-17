@@ -68,13 +68,28 @@
 				var inputDay;
 				var inputYear;
 
+
+				// assign user input
+				var userInput = $(this).val();
+
+				// test if the date is in 0000-00-00 format
+				// if it is just swap the order to 00-00-0000
+				if(/^\d{4}-\d{2}-\d{2}$/.test(userInput))
+				{
+					var tmp = userInput.split('-');
+					userInput = tmp[2]+tmp[1]+tmp[0];
+				}
+
+				// remove chars that are not numbers
+				userInput = userInput.replace(/[^0-9']/g, '');
+
 				// if user doesn't have input we are out of here
-				var userInput = $(this).val().replace(/[^0-9']/g, '');
 				if (!userInput)
 				{
 					$(this).val("");
 					return;
 				}
+
 
 				// get user input length
 				var inputLength = userInput.length;
