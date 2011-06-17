@@ -94,6 +94,13 @@
 				// get user input length
 				var inputLength = userInput.length;
 
+				if (inputLength === 3 || inputLength === 5)
+				{
+					alert("Data Invalida");
+					focusField($(this));
+					return;
+				}
+
 				// in case the user only inputs the day
 				if (inputLength < 3)
 				{
@@ -145,6 +152,8 @@
 					inputYear = userInput.substr(4);
 					inputYear = getClosestYear(inputYear);
 
+					console.debug(inputYear);
+
 					returnDate = new Date(inputYear, inputMonth, inputDay);
 					setDate($(this), returnDate);
 
@@ -184,14 +193,24 @@
 				var r = input.toString();
 				var inputLength = r.length;
 
-				if (inputLength < 2 || inputLength === 3 || inputLength > 4)
+				if (inputLength === 3 || inputLength > 4)
 				{
 					return false;
 				}
-				else if (inputLength === 2)
+				else if (inputLength <= 2)
 				{
 					var myCurrYear = currYear;
-					if (input > 50) myCurrYear = currYear - 100;
+
+					// if bigger than 50 use previous century years
+					if (input > 50)
+					{
+						myCurrYear = currYear - 100;
+					}
+					else if(input < 10)
+					{
+						// if smaller than 10 use the 00's (this sounds wierd, 20's is coler!)
+						input = "0" + input;
+					}
 
 					//cast to string so we can use substr
 					myCurrYear = myCurrYear.toString();
