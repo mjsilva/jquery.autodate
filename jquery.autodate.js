@@ -180,7 +180,21 @@
 
 			var setDate = function(element, dateObj)
 			{
-				element.val(dateObj.toString('yyyy-MM-dd'));
+				//format date and insert in element val				
+				
+				var year = dateObj.getFullYear();
+				var month = dateObj.getMonth();
+				var day = dateObj.getDate();
+				
+				// month plus one since in JS months begin at 0
+				month = parseInt(month, 10)+1;
+				
+				// add leading zeros
+				if(month < 10) month = "0"+month;
+				if(day < 10) day = "0"+day;
+				
+				// insert in element val
+				element.val(year+"-"+month+"-"+day);
 			};
 
 			var getClosestYear = function(input)
