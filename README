@@ -21,6 +21,8 @@ note 2: non numerical chars are wiped, this means if a user inputs something lik
 
 DEPENDENCIES: This script requires jQuery to work.  Download jQuery at http://jquery.com
 
+DEMO: http://manueljoaosilva.com/jquery-autodate-demo/
+
 -------------------------------------------------------------------------------------------
 
 Copyright (C) 2011 by Manuel Joao Silva (http://manueljoaosilva.com)
